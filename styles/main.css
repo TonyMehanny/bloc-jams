@@ -9,6 +9,7 @@
   max-width: 64rem;
 }
 
+
 @media (min-width: 640px) {
 
       html{ font-size: 112%; }
@@ -55,5 +56,20 @@ body {
 }
 
 
+.clearfix::before,
+
+.clearfix::after {
+
+      content: " ";
+
+      display:table;
+
+}
+
+.clearfix::after {
+
+    clear: both;
+
+}
 
 }
