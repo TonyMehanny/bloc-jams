@@ -28,6 +28,23 @@ var albumMarconi = {
      ]
  };
 
+
+ var albumPicaroni = {
+      title: 'The Cellphone',
+      artist: 'Guillermo Picaroni',
+      label: 'GP',
+      year: '1919',
+      albumArtUrl: 'assets/images/album_covers/07.png',
+      songs: [
+          { title: 'Bye, Operator', duration: '1:09' },
+          { title: 'Ding, ding, ding', duration: '4:01' },
+          { title: 'Doesnt fit in your pocket', duration: '3:51'},
+          { title: 'Cant you hear me now?', duration: '3:34' },
+          { title: 'Right phone number', duration: '1:15'}
+      ]
+  };
+
+
  var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
@@ -41,15 +58,16 @@ var albumMarconi = {
 
    };
 
+   var albumTitle = document.getElementsByClassName('album-view-title')[0];
+   var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+   var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+   var albumImage = document.getElementsByClassName('album-cover-art')[0];
+   var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+
+
    var setCurrentAlbum = function(album) {
     // #1
-    var albumTitle = document.getElementsByClassName('album-view-title')[0];
-    var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-    var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-    var albumImage = document.getElementsByClassName('album-cover-art')[0];
-    var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
 
-    // #2
     albumTitle.firstChild.nodeValue = album.title;
     albumArtist.firstChild.nodeValue = album.artist;
     albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;
@@ -66,4 +84,14 @@ var albumMarconi = {
 
 window.onload = function() {
     setCurrentAlbum(albumPicasso);
+
+    var albums = [albumPicasso, albumMarconi, albumPicaroni];
+    var index=1;
+    albumImage.addEventListener("click", function(event){
+      setCurrentAlbum(albums[index]);
+      index++;
+      if(index == albums.length){
+        index=0;
+      }
+    });
 };
